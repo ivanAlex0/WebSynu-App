@@ -38,6 +38,7 @@ class _CalendarState extends State<Calendar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Calendar"),
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: const Icon(Icons.change_history_sharp),

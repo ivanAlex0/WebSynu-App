@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:scs_project/src/calendar.dart';
+import 'package:scs_project/src/settings.dart';
 import 'package:scs_project/users/custom_user.dart';
 import 'package:scs_project/src/globals.dart';
 import 'package:scs_project/src/profile_page.dart';
@@ -35,7 +36,7 @@ class _NavigationState extends State<Navigation> {
     ProfilePage(user: _currentUser,),
     Calendar(user: _currentUser,),
     Calendar(user: _currentUser,),
-    ProfilePage(user: _currentUser),
+    Settings(user: _currentUser),
   ];
 
   @override

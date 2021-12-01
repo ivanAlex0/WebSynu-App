@@ -8,6 +8,10 @@ class Database {
   final CollectionReference brewCollection =
       FirebaseFirestore.instance.collection('Personal Data');
 
+  Future deleteuser() {
+    return brewCollection.doc(uid).delete();
+  }
+
   Future updateUserData(int yrOfStudy, String firstName, String lastName,
       String dateOfBirth, int group, String gender) async {
     return await brewCollection.doc(uid).set({

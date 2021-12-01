@@ -5,8 +5,6 @@ import 'package:scs_project/src/choose_group.dart';
 import 'package:scs_project/database/auth.dart';
 import 'package:scs_project/users/custom_user.dart';
 
-import '../src/globals.dart';
-
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -20,6 +18,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final _focusEmail = FocusNode();
   final _focusPassword = FocusNode();
+
+  String _error = "";
 
   bool _isProcessing = false;
 
@@ -73,7 +73,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 32.0),
+                      const SizedBox(height: 25.0),
+                      Text(
+                        _error,
+                        style: const TextStyle(color: Colors.red),
+                      ),
+                      const SizedBox(height: 5.0),
                       _isProcessing
                           ? const CircularProgressIndicator()
                           : Row(
@@ -87,12 +92,18 @@ class _RegisterPageState extends State<RegisterPage> {
 
                                       if (_registerFormKey.currentState!
                                           .validate()) {
-                                        User? user = await Auth
+                                        List<dynamic>? errorAndUser = await Auth
                                             .registerUsingEmailPassword(
                                           email: _emailTextController.text,
                                           password:
                                               _passwordTextController.text,
                                         );
+
+                                        User? user;
+                                        if (errorAndUser != null) {
+                                          _error = errorAndUser[0];
+                                          user = errorAndUser[1];
+                                        }
 
                                         setState(() {
                                           _isProcessing = false;

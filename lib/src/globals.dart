@@ -4,7 +4,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 MaterialColor materialColor = Colors.blue;
 Color secondaryColor = Colors.white;
-Color textColor = Color.fromARGB(255, 51, 154, 226);
+Color textColor = Colors.blue;
 const Text title = Text('WebSynu v2.76');
 int NULL_ERROR = -10;
 
