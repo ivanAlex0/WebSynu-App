@@ -18,9 +18,13 @@ class _CalendarState extends State<Calendar> {
   final CalendarController _controller = CalendarController();
 
   int _viewIndex = 0;
+  late CustomUser _currentUser;
+  String _value = "";
 
   @override
   void initState() {
+    _currentUser = widget.user;
+    _value = _currentUser.getGroup.toString();
     super.initState();
   }
 
@@ -49,21 +53,49 @@ class _CalendarState extends State<Calendar> {
           },
         ),
       ),
-      body: SfCalendar(
-        controller: _controller,
-        view: CalendarView.day,
-        dataSource: getCalendarDataSource(widget.user.getGroup()),
-        todayHighlightColor: Colors.cyan,
-        cellBorderColor: Colors.black,
-        showWeekNumber: true,
-        firstDayOfWeek: 1,
-        showNavigationArrow: true,
-        initialDisplayDate: DateTime(now.year, now.month, now.day, 7, 30),
-        showCurrentTimeIndicator: true,
-        timeSlotViewSettings: const TimeSlotViewSettings(
-            startHour: 7,
-            endHour: 22,
-            nonWorkingDays: <int>[DateTime.saturday, DateTime.sunday]),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: SfCalendar(
+              controller: _controller,
+              view: CalendarView.day,
+              dataSource: getCalendarDataSource(int.parse(_value)),
+              todayHighlightColor: Colors.cyan,
+              cellBorderColor: Colors.black,
+              showWeekNumber: true,
+              firstDayOfWeek: 1,
+              showNavigationArrow: true,
+              initialDisplayDate: DateTime(now.year, now.month, now.day, 7, 30),
+              showCurrentTimeIndicator: true,
+              timeSlotViewSettings: const TimeSlotViewSettings(
+                  startHour: 7,
+                  endHour: 22,
+                  nonWorkingDays: <int>[DateTime.saturday, DateTime.sunday]),
+            ),
+          ),
+          DropdownButton(
+            value: _value,
+            onChanged: (String? newValue) {
+              setState(() {
+                _value = newValue!;
+              });
+            },
+            items: <String>[
+              1.toString(),
+              2.toString(),
+              3.toString(),
+              4.toString()
+            ].map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(
+                  value,
+                  textAlign: TextAlign.center,
+                ),
+              );
+            }).toList(),
+          ),
+        ],
       ),
     );
   }

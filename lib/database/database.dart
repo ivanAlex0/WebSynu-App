@@ -6,10 +6,18 @@ class Database {
   Database({required this.uid});
 
   final CollectionReference brewCollection =
-      FirebaseFirestore.instance.collection('groups');
+      FirebaseFirestore.instance.collection('Personal Data');
 
-  Future updateUserData(int group) async {
-    return await brewCollection.doc(uid).set({'group': group});
+  Future updateUserData(int yrOfStudy, String firstName, String lastName,
+      String dateOfBirth, int group, String gender) async {
+    return await brewCollection.doc(uid).set({
+      'Year of study': yrOfStudy,
+      'First name': firstName,
+      'Last name': lastName,
+      'Date of birth': dateOfBirth,
+      'Group': group,
+      'Gender': gender,
+    });
   }
 
   Future<int> getUserGroup() async {
@@ -18,7 +26,18 @@ class Database {
         return NULL_ERROR;
       } else {
         Map<String, dynamic> data = value.data() as Map<String, dynamic>;
-        return data['group'];
+        return data['Group'];
+      }
+    });
+  }
+
+  Future<Map<String, dynamic>> getUserData() async {
+    return brewCollection.doc(uid).get().then((value) {
+      if (value.data() == null) {
+        return {};
+      } else {
+        Map<String, dynamic> data = value.data() as Map<String, dynamic>;
+        return data;
       }
     });
   }

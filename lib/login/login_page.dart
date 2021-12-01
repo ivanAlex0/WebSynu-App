@@ -122,18 +122,17 @@ class _LoginPageState extends State<LoginPage> {
 
                                     if (user != null) {
                                       String? email = user.email;
-                                        String emailVer;
-                                        if (email == null) {
-                                          emailVer = "None";
-                                        } else {
-                                          emailVer = email;
-                                        }
+                                      String emailVer;
+                                      if (email == null) {
+                                        emailVer = "None";
+                                      } else {
+                                        emailVer = email;
+                                      }
                                       if (await Database(uid: user.uid)
                                               .getUserGroup() ==
                                           NULL_ERROR) {
                                         CustomUser _currentUser = CustomUser(
                                             uid: user.uid,
-                                            group: NULL_ERROR,
                                             email: emailVer);
                                         Navigator.of(context).push(
                                           MaterialPageRoute(
@@ -142,12 +141,17 @@ class _LoginPageState extends State<LoginPage> {
                                           ),
                                         );
                                       } else {
-                                        int group =
+                                        Map<String, dynamic> data =
                                             await Database(uid: user.uid)
-                                                .getUserGroup();
+                                                .getUserData();
                                         CustomUser _currentUser = CustomUser(
+                                            yrOfStudy: data['Year of study'],
+                                            firstName: data['First name'],
+                                            lastName: data['Last name'],
+                                            dateOfBirth: data['Date of birth'],
+                                            group: data['Group'],
+                                            gender: data['Gender'],
                                             uid: user.uid,
-                                            group: group,
                                             email: emailVer);
                                         Navigator.of(context).pushReplacement(
                                           MaterialPageRoute(

@@ -375,7 +375,7 @@ List<BottomNavigationBarItem> bottomNavItems = const [
   BottomNavigationBarItem(
     icon: Icon(Icons.home),
     label: 'Home',
-    backgroundColor: Colors.red,
+    backgroundColor: Colors.blueGrey,
   ),
   BottomNavigationBarItem(
     icon: Icon(Icons.calendar_today),

@@ -4,7 +4,6 @@ import 'package:scs_project/src/calendar.dart';
 import 'package:scs_project/users/custom_user.dart';
 import 'package:scs_project/src/globals.dart';
 import 'package:scs_project/src/profile_page.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class Navigation extends StatefulWidget {
   final CustomUser user;

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:scs_project/src/calendar.dart';
-import 'package:scs_project/login/login_page.dart';
+import 'package:scs_project/src/choose_group.dart';
 import 'package:scs_project/src/globals.dart';
+import 'package:scs_project/users/custom_user.dart';
+
+import 'login/login_page.dart';
 
 void main() {
   runApp(const MyApp());

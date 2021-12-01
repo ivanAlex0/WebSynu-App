@@ -101,7 +101,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                         if (user != null) {
                                           CustomUser _currentUser = CustomUser(
                                               uid: user.uid,
-                                              group: NULL_ERROR,
                                               email: _emailTextController.text);
                                           Navigator.of(context)
                                               .pushAndRemoveUntil(
