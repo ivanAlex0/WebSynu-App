@@ -60,7 +60,7 @@ class _SettingsState extends State<Settings> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           createTextForm(passwordController, "password", Icons.password,
-              TextInputType.number, () {}),
+              TextInputType.text, () {}),
           Center(
             child: ElevatedButton(
               child: const Text("Delete account"),
@@ -84,6 +84,7 @@ class _SettingsState extends State<Settings> {
       Padding(
         padding: const EdgeInsets.only(left: 50.0, right: 50.0),
         child: TextFormField(
+          obscureText: true,
           keyboardType: type,
           controller: _controller,
           decoration: InputDecoration(

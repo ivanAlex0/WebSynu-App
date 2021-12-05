@@ -383,8 +383,8 @@ List<BottomNavigationBarItem> bottomNavItems = const [
     backgroundColor: Colors.green,
   ),
   BottomNavigationBarItem(
-    icon: Icon(Icons.school),
-    label: 'School',
+    icon: Icon(Icons.notes),
+    label: 'Notes',
     backgroundColor: Colors.purple,
   ),
   BottomNavigationBarItem(

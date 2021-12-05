@@ -162,6 +162,8 @@ class _ChooseGroupState extends State<ChooseGroup> {
       _error = "Group cannot be null";
     } else if (!['1', '2', '3', '4'].contains(groupController.text)) {
       _error = "The group must be 1, 2, 3 or 4";
+    } else if (_gender == 'Gender') {
+      _error = "Gender is not selected";
     } else {
       _error = "";
       return true;

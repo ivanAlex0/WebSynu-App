@@ -7,6 +7,8 @@ class Database {
 
   final CollectionReference brewCollection =
       FirebaseFirestore.instance.collection('Personal Data');
+  final CollectionReference notesCollection =
+      FirebaseFirestore.instance.collection('Personal Notes');
 
   Future deleteuser() {
     return brewCollection.doc(uid).delete();
@@ -21,6 +23,24 @@ class Database {
       'Date of birth': dateOfBirth,
       'Group': group,
       'Gender': gender,
+    });
+  }
+
+  Future updateUserNotes(List<String> notes) async {
+    return await notesCollection.doc(uid).set({
+      "Notes": notes,
+    });
+  }
+
+  Future<List<dynamic>> getPersonalNotes() async {
+    return notesCollection.doc(uid).get().then((value) {
+      if(value.data() != null)
+      {
+        Map<String, dynamic> data = value.data() as Map<String, dynamic>;
+        return data['Notes'];
+      }else {
+        return [];
+      }
     });
   }
 
